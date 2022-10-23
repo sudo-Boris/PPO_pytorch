@@ -1,0 +1,4 @@
+wandb/*
+videos/*
+runs/*
+__pycache__/*
