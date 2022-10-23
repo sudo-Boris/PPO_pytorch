@@ -13,8 +13,9 @@ def parse_args():
     parser.add_argument(
         "--gym-id",
         type=str,
-        default="CartPole-v1",
-        # default="MountainCar-v0",
+        # default="CartPole-v1",
+        default="BreakoutNoFrameskip-v4",
+        # default="Ant-v3",
         help="the id of the gym environment",
     )
     parser.add_argument(
@@ -27,7 +28,8 @@ def parse_args():
     parser.add_argument(
         "--total-timesteps",
         type=int,
-        default=50000,  # 25000,
+        # default=50000,  # 25000, # CartPole
+        default=10_000_000,  # Atari
         help="total timesteps of the experiments. Num_updates = total_timesteps // batch_size",
     )
     parser.add_argument(
@@ -77,7 +79,11 @@ def parse_args():
 
     # Algorithm specific arguments
     parser.add_argument(
-        "--num-envs", type=int, default=4, help="number of parallel gym environments"
+        "--num-envs",
+        type=int,
+        # default=4, # CartPole
+        default=8,  # Atari
+        help="number of parallel gym environments",
     )
     parser.add_argument(
         "--num-steps",
@@ -128,7 +134,8 @@ def parse_args():
     parser.add_argument(
         "--clip-coef",
         type=float,
-        default=0.2,
+        # default=0.2, # CartPole
+        default=0.1,  # Atari
         help="ppo surrogate cliping coefficient (epsilon in the paper)",
     )
     parser.add_argument(
