@@ -103,6 +103,8 @@ class PPO:
             self.policy_rollout()
             # print("Policy rollout done. Update")
             self.train()
+            # Save final model
+            torch.save(self.agent.state_dict(), f"trained_models/{self.run_name}.pt")
 
     def train(self):
 
